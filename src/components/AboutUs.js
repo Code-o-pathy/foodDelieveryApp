@@ -1,7 +1,7 @@
 import Users from "./Users";
 import UserClass from "./UserClass";
 import UserContext from "../utils/UserContext";
-export default AboutUs = () => {
+const AboutUs = () => {
   return (
       <div className=" flex justify-center shadow-lg w-[280px]  p-5 mx-auto  mt-[120px]  rounded-lg  border bg-purple-100 ">
         <div>
@@ -17,3 +17,4 @@ export default AboutUs = () => {
       </div>
   );
 };
+export default AboutUs;

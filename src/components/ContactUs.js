@@ -1,4 +1,4 @@
-export default ContactUs = () => {
+const ContactUs = () => {
   return (
     <>
       <h1 className="font-bold text-2xl m-2 p-2">This is ContactUs page!</h1>
@@ -15,3 +15,4 @@ export default ContactUs = () => {
     </>
   );
 };
+export default ContactUs;
