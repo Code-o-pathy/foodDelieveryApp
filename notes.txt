@@ -1,0 +1,472 @@
+Note 1: ^ caret or telde ~ 
+        caret is used to auto update to minor update and telda is used to update to major updates automatically
+Note 2: npm installs package and npx execute packages
+Note 3: CDN links are not good for packages. package will update unlike cdn links
+
+
+##parcel
+Note 4: parcel bulids dev build, host project and performs hmr(hot model replacement)
+Note 5: file watching algo in C++ that helps it do hot reload
+Note 6: Caching: faster builds.
+Note 7:image optimizatoin, minification of all files, bundle it and compress it,consistent hashing, code splitting, differential bundling(to support older browesrs), diagnostics of errors.
+Note 8: HTTPs
+Note 9: Tree shaking: remove unsused part of code.
+Note 10: different dev build and prod build
+
+
+
+setup process
+--npm init
+--npm i -D parcel
+--npm install react
+--npm install react-dom
+--npx parcel index.html
+
+
+babel
+--babel transpiles jsx into react elements
+--babel transpiles newer code to older version code so that older browser can understand that.
+
+
+jsx
+--in order to give 'class' to html tag in jsx use 'className'
+--also multi word attributes should be in camelCase like 'tabindex'->'tabIndex'
+--if single line jsx write just tag, if multiline use parenthesis around the whole jsx.
+--jsx saves us from cross site scripting.
+
+
+react component
+--everything  is a component in react.
+--there are 2 types
+--class based (uses js classes) (Old no one uses it) and functional component (uses js functions)(new and mostly used (99.99%)).
+
+
+functional component
+--just a js function,use capital name or will get error
+--if u use curly braces inside a functional component u can write any js code in it.
+
+css
+--inline  css is not written the same way as in css or html file, for jsx , inline css is given as a js object. 
+
+configDriven UI
+--like offers for bangalore are not same as offers for Delhi or Mumbai.
+--not only offers anything can be confugured via data from backend
+
+key for .map()
+--a unique key helps react-Dom not to re render all the existing sibling(components of the same level)components on addition of a new component.
+--also dont use indexes of the arrays as a key because 
+
+--if u have to use key below is the syntax
+        {resList.map((restaurant,index) => (
+          <RestaurantCards key={index} resData={restaurant} />
+        ))}
+
+
+--not using key<<<< using indexes<<using unique id as a key😁
+
+
+two types of export import
+--default
+export default component
+import Component from "./path"
+
+--named
+export const Component
+import {Component} from "./path"
+
+
+react hooks
+
+--react hooks are just js functions with a specific  purpose
+--normal react cconvention is to use "use" before any hooks
+--normal js utility functions   
+  --useState()
+  --how can const be updated in useStae variable?
+    --because when using set method variable is changed, the whole component is recalled with different value of that const. so its not the const variable that is updated to different  values but the whole const variable is re rendered.
+    --dont create useState variables in for loop, if else, or outside the body of the component
+
+
+
+  --useEffect()
+     --import it as a named import
+     --normally its called when the body component is rendered.
+     --no dependency array(called only on initial  render the component(just once))
+     --empty dependency array(called on every render)
+
+
+
+
+//sample data
+  {
+    info: {
+      id: "32300",
+      name: "Chaayos Chai+Snacks=Relax",
+      cloudinaryImageId:
+        "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/2ce18342-6c04-4ebc-9725-788819ddaa56_32300.JPG",
+     
+      cuisines: [
+        "Bakery",
+        "Beverages",
+        "Chaat",
+        "Desserts",
+        "Home Food",
+        "Italian",
+        "Maharashtrian",
+        "Snacks",
+        "Street Food",
+        "Sweets",
+      ],
+      avgRating: 4.6,
+     
+      sla: {
+        deliveryTime: 29,
+
+      }
+  }
+  }
+
+testing git push
+
+reconcilliation , diffing algo , virtual dom,incremental rendering 
+--virtual dom is an object representation of an actual DOM 
+--https://chatgpt.com/share/97e84a84-ecc5-4982-8b89-489fb648ac0c
+
+Monolith vs microservice architecture.
+
+--microservice
+----separation of concerns and single responsibility principle(each and every service has its own job);
+
+
+
+
+json data handling
+
+-- const finalData=json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants; (better way(optional chaining))
+-- const finalData=json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants; (not better way)
+
+conditional rendering
+--if you have a condition for rendering its called conditional rendering (like rendering shimmer UI before API call gives you the data)
+-- bad UX
+  -- Loads-> API call-> Render
+--good UX
+  --Loads->render(Shimmer UI or just blank component)-> API call-> Render
+
+
+State variable Definition
+--Whenever the state variable changes, react triggers a reconcilliation cycle(re renders the component)
+
+
+Link vs a tag
+-- a tag will reload the whole package
+--Link will just update the required component
+
+Server Side Routing vs Client Side Routing
+--server side rendering is when we click on something it requests from the server, gets the page and renders it.
+
+--client side routing is when all the required components are already loaded in either the first call or (not clear), and when you click on something it just renders the required compo without making a network page.
+
+
+Single Page Application
+--SPA's  are the applicationss with single page and the components within them changes via client side routing.
+
+
+Static Routing vs Dynamic Routing
+--Dynamic Routing is routing to undefined url like click on one of the million restaurant cards in your UI and it takes you to its page.
+--static routing is routing to defined urls like contact us about us .
+
+
+
+Link
+--its a wrapper over anchor tag
+
+Class Based Component
+--class "name" extends React.Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    return{
+      <>{JSX}</>
+    }
+  }
+}
+
+--in this "super(props)" is used to initialize parent class React.Component;
+"https://chatgpt.com/share/078fd4bf-1f56-4818-9f81-a9ee4a037ef8"
+
+
+React class  component life cycle
+--first loads constructor
+--then loads render method
+--at the end calls constructordidmount()
+--this method is used to make api calls, (line  150 of notes.txt)
+
+
+--so if u have a parent and 2 child
+
+--intuitive order of events
+----parent constructor
+----parent render
+----chidl1 const
+----child1 render
+----child1 did mount()
+----chidl2 const
+----child2 render
+----chidl2 did mount()
+----parent didmount()
+
+--actual order
+----parent constructor
+----parent render
+----chidl1 const
+----child1 render
+----chidl2 const
+----child2 render
+----child1 did mount()
+----chidl2 did mount()
+----parent didmount()
+
+
+--reason go to react lifecycle diagram on google
+---- "https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/"
+--first react mounts the component by calling its constructor and render and then manipulates the dom and then when manipulation is done it updates the dom.
+
+
+
+
+
+
+************************************************IMPORTANT*****************************************************************
+--Mounting
+----Constructor(dummy data)
+----render(dummy data)          
+----ComponentDidMount()
+     <API call>
+     <this.setState>-> state variable is updated
+
+--Update
+----render(API Data)
+----ComponentDidUpdate()
+
+Unmount
+----When u leave the page(when the component goes away from screen)
+----ComponentWillUnmount()
+
+
+
+
+
+
+
+
+
+--so what happens is manipulating dom is expensive so it batches up child components constructor and render methods. 
+-- and when completed it then calls for didmount() together
+-- this is an optimization from react
+
+
+--useEffect is not equal to ComponentDidMount,
+
+
+--LEARN ABOUT WHY YOU CANT SE ASYNC IN USEEFFECT
+
+
+
+--single responsibility principle
+---- first advantage it causes modularity and code readability
+---- second and main adv is that it helps  to better write test cases and find bug..
+
+--custom hooks
+----'use' keyword is not mandatory, but react recommends it, however it is mandatory if u use linter.
+----however cap component name is mandatory if u use linter
+
+--whats the diff between normal function and custom hooks
+-----custom hook will have some react logic written in it, it may have state or use effect function or some other react utilities unlike normal functions.
+
+
+
+
+--bundler optimization
+----so what happens is when we bundle our project it combines all the components and other things in one big js file, however this might be good for small projects, as your projects grow the size of this file grows too, so optimal approach is to not make a single bundle of each file/components
+----- also bundling is necessary u cant send all of your thousands of js files on to the browesrs
+----- so the best bundling approach would be to make small small multiple bundles.
+-----this bundling approach is called chunking/ code splitting/ dynamic bundling
+
+
+CSS writing techniques
+--inline/style sheet (not scalable probably)
+--SASS/ SCSS (not scalable)
+--styled component
+--material UI (it gives prebuilt components)
+--bootstrap/chakra UI
+
+--tailwind css uses PostCSS(a tool to modify css with js).
+--tailwind has thousands of classes but it only loads and ships that classes which u have used in the project making your overall project lightweight and less bloated.
+
+
+
+--higher order components
+----its a js function which takes a function and returns a component.
+----adds extra features , tweaks it , enhances it.
+
+--react has 2 layers
+----data layer and UI layer
+----data layer  powers the UI layer, all states props comes under data layer. UI layer is just JSX.
+
+
+--drop down is call accrodion (named after an instrument) 
+
+
+
+--controlled and uncontrolled components
+while building accordion when first it was controlled by itself(it had its own state) it was controlled
+but when its state was revoked and parent got that authority it became uncontrolled.
+
+--when u make a component controlled from uncontrolled its called lifting the state up
+
+--props drilling
+-----when u send data from very high component to very low component its called prop drilling
+
+
+why redux toolkit over redux?
+--configuring redux store is very complicated
+--redux needed too much packages to make something useful
+--redux uses too much boilerplate code
+
+
+
+clearCart:(state)=>{
+    // let state=["pizza","burger"]
+    // console.log(state)--//it will return a proto objecct because redux wont let us see teh store directly.
+    // console.log(current(state))--//it will return an array of objects in your state--[pizza, burger]
+    // state=[] --//this empties the local state not the actual state.
+    // console.log(current(state))--//[]--it will return empty state. but it wont reflect because all this has happened in current state not in acctual state, if u are using pizza and burger somewhere it wont go out unless u use below code.
+    state.items.length=0  //this will clear the state and return
+    //if u dont want to use above line\
+    // --modify the current state and at the end return it, like if we want to empty the state at the end 
+    // return [] --this will modify the actual state and wherever u are using the state, the changes would be reflected and pizza and burger (our example items in store) willl no longer be there as we emptied the store
+    //or if u want to mutate the items in store llike except pizza u want add something else;
+    // return {items:["rolls","burger"]}
+}
+
+
+
+RTK
+--it gives a store to store the data
+--store has multiple slices in it
+--each slice is a logical partition denoting to a separate type of data (eg one slice may store cart info, another may store logged in users info,etc)
+
+--Write data
+--when u press ADD button, it wont directly add something to your (slice in the store), it would 'dispatch' an "action".
+--when "action" is "dispatched",it calls a function(reducer) which inturn modifies the (slice in the store).
+--we cant directly call the function because RTK maintains a 'separation of concerns',it has two parts state(the database) and the logic that modifies the state(reducers).Action trigger the state update, reducers handle how state is updated.
+
+--read data
+--for reading data from the store, we use something called "selector".
+--the component which reads the store and uses its data is called 'subscribed to the store', the process of reading and using data is called 'subscribing to the store'.
+
+--one way
+--const store=useSelector((store)=>store)
+--const cartItems=store.cart.items
+
+--another way
+--const cartItems=useSelector((store)=>store.cart.items)
+
+--difference in both
+--so what happens is in first way you subscribe to the whole store, and then use a part of it, so if any updates happen in your whole store it would affect your cartItems, use depend on usecase, like its not needed when you are viewing menu page and someone logged-in(userSlice).
+--while in second way you only subscribe to small portion that is cart, making it efficient.
+
+
+--reducer/reducers
+--while creating our store, we use 'reducer' because its only one big store, while creating slice we call it 'reducers' because it has multiple reducers, while exporting we export all as one reducer hence we export it as cartSlice.reducer and not caartslice.reducers.
+
+
+--mutating
+--earlier in vanilla redux we were not allowed to mutate the state, instead we used to make  a copy of the state, mutate the state of the copy state and then return the state,
+addItem:(store,action)=>{
+  const newState=[...state]
+  newState.items.push(payload)
+  return newState;
+
+}
+
+--but in redux toolkit we are able to mutate state directly,all immutable thing is done by redux in the background. Redux uses immer,which in background,calculates the difference between main state and immutable state, and modifies and gives  an immutable state, all in backend.
+--https://immerjs.github.io/immer/assets/images/immer-4002b3fd2cfd3aa66c62ecc525663c0d.png --image of immer working.
+
+
+--RTK setup
+--install @reduxjs/toolkit
+--build the store
+--connect our store to the applicationss
+--slice(cartSllice)
+--dispatch(action)
+--selector
+
+
+
+
+
+
+
+
+
+
+--types of onclick
+----onclick={handle(item)}  --wrong as it executes the function on reload and then assign value to the onclick which is not what we need.
+----onclick={()=>{handle(item)}}--correct,any function with argument should be written like this
+----onclick={handle} --this is correct if no argument is needed,
+
+
+
+
+--testing
+--there are various types of testing,QA testing ,application testing etc.
+--here we will talk only about developer testing
+--the first thing is manual testing, eg creating a contact page and checking it works or not OR use the search functionality and make sure it works.
+
+
+--3 types of testing a developer can do
+----unit testing.
+----integration testing.
+----end to end testing e2e testing.
+
+
+--unit testing
+it is like taking a unit part (a component) of your project and test it. For eg, we pick up the header component which is a unit and then write test cases for it. Making sure every thing in th header component works properly.
+
+--integration testing
+when we do testing that involves multiple components it is called integration testing. For eg,  we add items in cart from item list, but we see changes in cart commponent. 
+
+--e2e testing
+in this type of testing we simulate complete user behaviour. From landing on the home page-> logging in-> selecting restaurants-> picking items in cart-> checking out-> close the app. This is called e2e testing.
+
+--when we use 'create-react-app' react testing library already comes along.
+--react testing library is built on top of dom testing library.
+--react testing library uses 'jest' behind the scenes.
+--jest uses babel to work.
+
+
+#setting up testing library
+--install react testing library 
+--install jest
+--install jest-babel dependencies
+--configure babel dependencies
+--configure .parcelrc(jest uses babel and parcel itself uses babel, if u use both it will not work properly, so in this config we would disable default parcels babel transpilation, and only one config for babel will remain.)
+--writing jest configuration
+--install jsdom library.
+--install ( npm i -D @babel/preset-react )to support JSX while testing.
+-include it in our babel config ( presets: [['@babel/preset-react', {runtime:"automatic"}]],)
+--install @testing-library/jest-dom(toBeInTheDocument() and many other things are defined in this library.)
+
+jsdom
+--it is not a browser but it will give browser like environment for our test cases to run. test cases wont run in chrome or brave browser.
+
+testing
+--so for testing either u can make a '__tests__' file ( "__" is called dunder, it uses 2 underscores so that no body accidentally keep the same name of any file ).
+--also u should keep file name like 1 of the below 
+header.test.js
+header.test.ts
+header.spec.ts
+header.spec.ts
+
+--if u dont write assetion or if u keep your test function empty or your assertion is true 'jest' will give you 'PASS' or else ( if your assertion is wrong) 'jest' will give you 'FAILED'

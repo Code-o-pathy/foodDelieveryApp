@@ -1,0 +1,166 @@
+body {
+  margin: 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  background-color: rgb(94, 168, 168);
+}
+.logo {
+  display: flex;
+  width: 60px;
+  margin-left: 40px;
+}
+.nav-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-items > ul {
+  display: flex;
+  margin-right: 40px;
+}
+
+.nav-items > ul > li {
+  font-size: 24px;
+  list-style-type: none;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.filter {
+  /* border: 1px solid black; */
+  margin: 10 0 10 35;
+  height: 30px;
+  border-radius: 5px;
+  padding: 5 5 5 5;
+  display: flex;
+}
+
+.filter-btn {
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 108px;
+}
+.res-card {
+  width: 200px;
+  height: 375 px;
+  margin-left: 35px;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.res-card:hover {
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.res-logo {
+  width: 200px;
+  height: 150px;
+}
+
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shimmer-card {
+  width: 200px;
+  height: 375px;
+  margin-left: 35px;
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 5px;
+  background-color: #f0f0f0;
+}
+.shimmer-con {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.loginBtn {
+  background-color: rgb(94, 168, 168);
+  border-radius: 10px;
+  width: 70;
+}
+
+.searchCon {
+  width: 80%;
+  display: flex;
+}
+.searchBox {
+  width: 80%;
+  border-radius: 10px;
+}
+.searchBTN {
+  border-radius: 5px;
+  width: 10%;
+  margin-left: 10px;
+}
+
+.resPage {
+  margin-left: 250px;
+  margin-right: 250px;
+}
+
+.resInformation {
+  display: flex;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 15 15 0 0;
+  overflow: hidden;
+  /* justify-content: space-between; */
+}
+
+.resDetails {
+  margin-left: 200;
+}
+.resName {
+  /* margin-top: -120px; */
+  /* background-color: black; */
+  font-size: larger;
+}
+.aboutRes {
+  /* background-color: aquamarine; */
+  /* margin-lef */
+}
+.resPagelogo {
+  width: 200px;
+}
+
+.menuCardContainer {
+  margin-top: 20px;
+  background-color: aqua;
+}
+
+.res-container > :any-link {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-items > ul > li > :any-link {
+  text-decoration: none;
+  color: black;
+}
+
+.user-card {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 180px;
+  /* height: 350px; */
+  margin-left: 10px;
+  margin-top: 10px;
+  /* padding-left: 15px; */
+
+
+}
+
+.github-image{
+  width: 100%;
+  /* margin-left:-15px; */
+}
