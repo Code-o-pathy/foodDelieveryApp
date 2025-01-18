@@ -94,8 +94,8 @@ const BodyComponent = () => {
   //     },
   //   ]);
 
-  const {loggedInUser,SetUsername}=useContext(UserContext)
-   
+  const { loggedInUser, SetUsername } = useContext(UserContext);
+
   const [resListNew, setResListNew] = useState([]);
   const [filteredResListNew, setFilteredResListNew] = useState([]);
   const [searchText, setSearchText] = useState("");
@@ -105,9 +105,19 @@ const BodyComponent = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1646403&lng=72.8530249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const apiUrl =
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1646403&lng=72.8530249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+
+    // Use localhost URL for local testing
+    const data = await fetch(proxyUrl + apiUrl, {
+      method: "GET",
+      headers: {
+        Origin: 'https://food-delievery-app-wpky.vercel.app/', // Localhost URL for testing
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+
     const json = await data.json();
     const finalData =
       json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -128,7 +138,7 @@ const BodyComponent = () => {
   }
 
   // way 2 for conditional rendering using ternary operator
-  return (resListNew.length === 0) ? (
+  return resListNew.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
@@ -158,8 +168,16 @@ const BodyComponent = () => {
           </button>
         </div>
         <div>
-            <label className="bg-purple-100 rounded-l-lg h-80  p-1 px-2 border border-black  ">Username : </label>
-            <input value={loggedInUser} onChange={(e)=>{SetUsername(e.target.value)}} className="border border-black p-1 px-2 mx-2 bg-purple-100 rounded-r-lg w-36"/>
+          <label className="bg-purple-100 rounded-l-lg h-80  p-1 px-2 border border-black  ">
+            Username :{" "}
+          </label>
+          <input
+            value={loggedInUser}
+            onChange={(e) => {
+              SetUsername(e.target.value);
+            }}
+            className="border border-black p-1 px-2 mx-2 bg-purple-100 rounded-r-lg w-36"
+          />
         </div>
         <button
           className="filter-btn mx-5  py-1 px-5 border border-black rounded bg-purple-100 my-3"
@@ -183,7 +201,9 @@ const BodyComponent = () => {
             to={"/restaurant-menu/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            {restaurant.info.totalRatingsString ==="10K+"||restaurant.info.totalRatingsString ==="50K+" || restaurant.info.totalRatingsString ==="100K+" ? (
+            {restaurant.info.totalRatingsString === "10K+" ||
+            restaurant.info.totalRatingsString === "50K+" ||
+            restaurant.info.totalRatingsString === "100K+" ? (
               <RestaurantRated resData={restaurant} />
             ) : (
               <RestaurantCards resData={restaurant} />
