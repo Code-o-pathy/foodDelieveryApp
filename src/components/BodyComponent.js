@@ -7,92 +7,6 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 
 const BodyComponent = () => {
-  //   console.log(typeof resList);
-
-  //creating normal js variable
-
-  //   console.log(typeof resList1);
-  //creating state js variable
-  //   const [resList1, setResList] = useState([
-  //     {
-  //       info: {
-  //         id: "32300",
-  //         name: "Chaayos Chai+Snacks=Relax",
-  //         cloudinaryImageId:
-  //           "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/2ce18342-6c04-4ebc-9725-788819ddaa56_32300.JPG",
-
-  //         cuisines: [
-  //           "Bakery",
-  //           "Beverages",
-  //           "Chaat",
-  //           "Desserts",
-  //           "Home Food",
-  //           "Italian",
-  //           "Maharashtrian",
-  //           "Snacks",
-  //           "Street Food",
-  //           "Sweets",
-  //         ],
-  //         avgRating: 4.6,
-
-  //         sla: {
-  //           deliveryTime: 29,
-  //         },
-  //       },
-  //     },
-  //     {
-  //       info: {
-  //         id: "32301",
-  //         name: "Chaayos2",
-  //         cloudinaryImageId:
-  //           "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/2ce18342-6c04-4ebc-9725-788819ddaa56_32300.JPG",
-
-  //         cuisines: [
-  //           "Bakery",
-  //           "Beverages",
-  //           "Chaat",
-  //           "Desserts",
-  //           "Home Food",
-  //           "Italian",
-  //           "Maharashtrian",
-  //           "Snacks",
-  //           "Street Food",
-  //           "Sweets",
-  //         ],
-  //         avgRating: 4.5,
-
-  //         sla: {
-  //           deliveryTime: 29,
-  //         },
-  //       },
-  //     },
-  //     {
-  //       info: {
-  //         id: "32302",
-  //         name: "Chaayos3",
-  //         cloudinaryImageId:
-  //           "RX_THUMBNAIL/IMAGES/VENDOR/2024/4/17/2ce18342-6c04-4ebc-9725-788819ddaa56_32300.JPG",
-
-  //         cuisines: [
-  //           "Bakery",
-  //           "Beverages",
-  //           "Chaat",
-  //           "Desserts",
-  //           "Home Food",
-  //           "Italian",
-  //           "Maharashtrian",
-  //           "Snacks",
-  //           "Street Food",
-  //           "Sweets",
-  //         ],
-  //         avgRating: 4.8,
-
-  //         sla: {
-  //           deliveryTime: 29,
-  //         },
-  //       },
-  //     },
-  //   ]);
 
   const { loggedInUser, SetUsername } = useContext(UserContext);
 
@@ -105,37 +19,44 @@ const BodyComponent = () => {
   }, []);
 
   const fetchData = async () => {
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    // const proxyUrl = "";
     const apiUrl =
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.1646403&lng=72.8530249&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+    // const apiUrl =
+    //   "http://localhost:4000/resto";
 
     // Use localhost URL for local testing
-    const data = await fetch(proxyUrl + apiUrl, {
-      method: "GET",
-      headers: {
-        Origin: 'https://food-delievery-app-wpky.vercel.app/', // Localhost URL for testing
-        "X-Requested-With": "XMLHttpRequest",
-      },
-    });
+    const data = await fetch(apiUrl);
+    // const data = await fetch(proxyUrl + apiUrl, {
+    //   method: "GET",
+    //   headers: {
+    //     Origin: "http://localhost:1234/ ", // Localhost URL for testing
+    //     "X-Requested-With": "XMLHttpRequest",
+    //   },
+    // });
 
+    // if (!data.ok) {
+    //   throw new Error(`HTTP error aagaya bhaiyaa  ! status: ${data.status}`);
+    // }
+
+    // const contentType = data.headers.get("content-type");
+    // if (!contentType || !contentType.includes("application/json")) {
+    //   throw new Error("Received non-JSON response");
+    // }
+    console.log(data)
     const json = await data.json();
     const finalData =
       json.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setResListNew(finalData);
     setFilteredResListNew(finalData);
   };
-
   //conditional rendering
 
   //way 1
   // if (resListNew.length === 0) {
   //   return <Shimmer/>;
   // }
-
-  const status = useOnlineStatus();
-  if (!status) {
-    return <h1> looks like you are offline</h1>;
-  }
+  
 
   // way 2 for conditional rendering using ternary operator
   return resListNew.length === 0 ? (

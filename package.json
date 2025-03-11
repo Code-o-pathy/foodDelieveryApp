@@ -6,7 +6,7 @@
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "test": "jest",
-    "watch-test":"jest --watch"
+    "watch-test": "jest --watch"
   },
   "keywords": [
     "react"
@@ -37,5 +37,6 @@
   },
   "browserslist": [
     "last 2 Chrome version"
-  ]
+  ],
+  "proxy": "https://www.swiggy.com"
 }
